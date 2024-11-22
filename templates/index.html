@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital@1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/CSS/styles.css">
+</head>
+<body>
+<h1> Weather Forecast</h1>
+    <div class="container">
+    <form method="POST">
+        <label>
+            <input type="text" name="city" placeholder="Enter city name" required>
+        </label>
+        <button type="submit">Get Weather</button>
+    </form>
+
+    {% if weather %}
+        {% if weather.error %}
+            <p class="error">{{ weather.error }}</p>
+        {% else %}
+            <div class="weather-info">
+                <h2>{{ weather.name }}, {{ weather.sys.country }}</h2>
+                <p>🌡 Temperature: {{ weather.main.temp }}°C</p>
+                <p>🌧 Weather: {{ weather.weather[0].description }}</p>
+                <p>💧 Humidity: {{ weather.main.humidity }}%</p>
+            </div>
+        {% endif %}
+    {% endif %}
+</div>
+
+</body>
+</html>
